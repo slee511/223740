@@ -1,0 +1,55 @@
+---
+title: "HW-4"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+library(tidyr)
+library(magrittr); library(dplyr); library(MRIcloudT1volumetrics) 
+dat = readSubject("kirby_3_1_ax_283Labels_M2_corrected_stats.txt")
+
+dat = subject2df(dat)
+dat$rawid = NULL 
+
+dat = addSubjectICV(dat)
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+### Input space
+
+```{r}
+selectInput("type", label = "Types:",
+            choices = c(1, 2), selected = 1)
+
+sliderInput("lvl", label = "Level:",
+            min = 1, max = 3, value = 1, step = 1)
+```
+
+Column
+-----------------------------------------------------------------------
+
+### Graph
+
+```{r}
+library(plotly)
+renderPlot({
+  avg <- (dat$volume[c(1:836)] / sum(dat$volume[dat$type==input$type & dat$level==input$lvl])) * 100
+  dat$avg <- avg
+  dat <- dat[c(1:length(dat$volume[dat$type==input$type & dat$level==input$lvl])), ]
+  
+  g <- ggplot(dat, aes(x=roi, y=avg)) + geom_col(fill="#2ab230")
+  g
+  #ggplotly(g)
+
+})
+```
+
