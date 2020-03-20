@@ -19,6 +19,8 @@ Solution:
   - PHRs (WebMD PHR, etc.) failed because inputting data feels like a lot of work
 - Data analytics (upcoming)
 
+Lines of code: 1586
+
 ## Sown.me
 
 Objective: Make social beneficial and productive. Separate social from looks, vanity, etc. 
@@ -33,3 +35,5 @@ Solution:
 - The progress or problem are paired with the starting point and goal, so that helpers know the context every time they help
 - Users can view their goals and all their progress, as if viewing a storybook. Each goal is a story of their lives. 
 - The number of times you help and share progress/problem is made explicit to encourage your keep doing so
+
+Lines of code: 1182
