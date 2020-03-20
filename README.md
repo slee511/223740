@@ -1,10 +1,6 @@
 NLP stuff above.
 
-https://www.healthen.me
-
-https://www.sown.me
-
-## Healthen.me
+## Healthen.me (https://www.healthen.me)
 
 Objective: Help solve and manage complex health conditions like diabetes, multiple sclerosis, etc. Make it intuitive. 
 
@@ -21,7 +17,7 @@ Solution:
 
 Lines of code: 1586
 
-## Sown.me
+## Sown.me (https://www.sown.me)
 
 Objective: Make social beneficial and productive. Separate social from looks, vanity, etc. 
 
