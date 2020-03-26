@@ -1,0 +1,163 @@
+---
+title: "Coronavirus Cases & Deaths in U.S. and the World"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(plotly)
+library(tidyr)
+library(leaflet)
+library(gtrendsR)
+library(magrittr)
+library(tidyverse)
+library(rsconnect)
+
+
+##### Map 
+### Cases
+
+confirm <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-25-2020.csv")
+
+confm <- confirm[1:3169, ]
+
+#confirm <- confirm[which(confirm$Country.Region=="US"), ]
+#confm <- confirm[1:52, ]
+#confm <- confm[-c(5, 6), ]
+#confm <- confm[, c(1:4, length(confm))]
+
+pal <- colorFactor(c("#E95555"), domain = c("California", "New York", "Connecticut", "New Jersey", "Delaware", "Illinois", "Florida", "Nevada", "Louisiana", "Ohio", "West Virginia", "Rhode Island", "Pennsylvania", "Oregon", "Michigan", "Massachusetts", "Maryland", "Indiana", "Idaho", "Colorado", "Hawaii", "Oklahoma", "Texas", "Virginia", "Washington", "Wisconsin", "Minnesota"), na.color = "#81C77F")
+
+### Deaths
+
+#deaths <- comfirm[which(deaths_all$Country.Region=="US"), ]
+#deaths <- deaths[1:52, ]
+#deaths <- deaths[-c(5, 6), ]
+#deaths <- deaths[, c(1:4, length(deaths))]
+
+
+### World
+
+world_cases <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+
+world_deaths <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
+
+
+```
+Graphs 
+=====================================     
+
+Column {data-height=500}
+-----------------------------------------------------------------------
+
+### U.S. Cases by County, Lockdown vs. Non-lockdown
+
+```{r}
+
+pal2 <- colorFactor(
+  palette = c("#E95555", "#81C77F"),
+  domain = c("Lockdown", "Non-lockdown")
+)
+
+leaflet(confm) %>% addTiles() %>%
+  addCircleMarkers(lng = ~Long_, lat = ~Lat, weight = 1,
+    radius = ~sqrt(confm$Confirmed)/1.7, popup = paste("State: ", confm$Province_State, "<br>", "County: ", confm$Admin2, "<br>", "Cases: ", confm$Confirmed), stroke=F, fillColor = ~pal(Province_State), fillOpacity = 0.5
+  ) %>%
+  addLegend( pal = pal2, values = c("Lockdown", "Non-lockdown"),
+    labFormat = labelFormat(prefix = ""),
+    opacity = 1
+  ) %>%
+  setView(lat = 37.0902, lng = -95.7129, zoom = 3)
+
+```
+
+### U.S. Deaths by County, Lockdown vs. Non-lockdown
+
+```{r}
+
+leaflet(confm) %>% addTiles() %>%
+  addCircleMarkers(lng = ~Long_, lat = ~Lat, weight = 1,
+    radius = ~sqrt(confm$Deaths)*2, popup = paste("State: ", confm$Province_State, "<br>", "County: ", confm$Admin2, "<br>", "Deaths: ", confm$Deaths), stroke=F, fillColor = ~pal(Province_State), fillOpacity = 0.5
+  ) %>%
+  addLegend( pal = pal2, values = c("Lockdown", "Non-lockdown"),
+    labFormat = labelFormat(prefix = ""),
+    opacity = 1
+  ) %>%
+  setView(lat = 37.0902, lng = -95.7129, zoom = 3)
+
+```
+
+Column {data-height=500}
+-----------------------------------------------------------------------
+
+### World Total Cases
+
+```{r}
+### Map
+
+leaflet(world_cases) %>% addTiles() %>%
+  addCircleMarkers(lng = ~Long, lat = ~Lat, weight = 1,
+    radius = ~sqrt(world_cases[, length(world_cases)])/10, popup = paste("Country: ", world_cases$Country.Region, "<br>", "Province: ", world_cases$Province.State, "<br>", "Cases: ", world_cases[, length(world_cases)]), stroke=F, color="blue",fillOpacity = 0.7) 
+
+
+```
+
+### World Total Deaths
+
+```{r}
+
+leaflet(world_deaths) %>% addTiles() %>%
+  addCircleMarkers(lng = ~Long, lat = ~Lat, weight = 1,
+    radius = ~sqrt(world_deaths[, length(world_deaths)])/7, popup = paste("Country: ", world_deaths$Country.Region, "<br>", "Province: ", world_deaths$Province.State, "<br>", "Cases: ", world_deaths[, length(world_deaths)]), stroke=F, color="black" ,fillOpacity = 0.7)
+
+```
+
+About
+=====================================     
+
+**Purpose**
+
+To show one quick view of Coronavirus's spread and cost of lives in the U.S. and the world. To show comparison between the states under lockdown and non-lockdown. Check back to see the difference over time. 
+
+**Data sources**
+
+* 2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository by Johns Hopkins CSSE (https://github.com/CSSEGISandData/COVID-19)
+
+The data are updated daily. 
+
+**States under lockdown** 
+
+* California
+* New York
+* Connecticut
+* New Jersey
+* Delaware
+* Illinois
+* Florida
+* Nevada
+* Louisiana
+* Ohio
+* West Virginia
+* Rhode Island
+* Pennsylvania
+* Oregon
+* Michigan
+* Massachusetts
+* Maryland
+* Indiana
+* Virginia
+* Texas
+* Oklahoma
+* Washington
+* Wisconsin
+* Minnesota
+* Hawaii
+* Idaho
+
+**Contact**
+
+For any inquiries/feedback, please email David: slee511@jhu.edu. 
