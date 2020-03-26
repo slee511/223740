@@ -2,7 +2,7 @@ NLP stuff above.
 
 ## Monitor Americans' mental health under lockdown (https://daviddatascience.shinyapps.io/coronavirus_mental_health/) (may take some time to load)
 
-If the app shows an error, it means the gtrendR package has hit the limit (https://github.com/PMassicotte/gtrendsR/issues/166). Only suboptimal solutions seem to exist; I will investigate. Or I'll just build another dashboard without gtrendR. 
+*If the app shows an error, it means the gtrendR package has hit the limit (https://github.com/PMassicotte/gtrendsR/issues/166). Only suboptimal solutions seem to exist; I will investigate. Or I'll just build another dashboard without gtrendR. 
 
 Objective: More U.S. states are entering lockdown. Under lockdown, people can't go outside except for "essential" businesses. Such businesses often include pharmacy, hospital, and grocery that provide sustenance. They exclude dine-in restaurants, parks, and gyms where people usually gather to socialize. The graphs show how often people in each type of states -- locked down or not locked down -- search terms that represent change in their mental health and living environment. The map gives context by showing relative number of total coronavirus cases by state and by the two types. 
 
