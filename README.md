@@ -1,5 +1,7 @@
 NLP stuff above. 
 
+** Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
+
 ## One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
 
 Built to replace the one below, which loops over Google Trend 150+ times per load. Apparently Google doesn't allow that. This one should also add some value. I'll keep making. 
