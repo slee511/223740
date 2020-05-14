@@ -1,5 +1,7 @@
 NLP stuff above. 
 
+## Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/)
+
 ## Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
 
 ## One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
