@@ -4,7 +4,7 @@ NLP stuff above.
 
 ## Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
 
-## Solve problems together. Exchange letters with students, professionals, the elderly, and everyone else from all walks of life (www.penpaloo.com)
+## Solve problems together. (www.penpaloo.com)
 
 ## One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
 
