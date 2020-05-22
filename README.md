@@ -4,11 +4,11 @@ NLP stuff above.
 
 ## Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
 
+## What makes people use LPG? (pdf in the respository with the same title)
+
 ## One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
 
 Built to replace the one below, which loops over Google Trend 150+ times per load. Apparently Google doesn't allow that. This one should also add some value. I'll keep making. 
-
-## What makes people use LPG? (pdf in the respository with the same title)
 
 ## Monitor Americans' mental health under lockdown (https://daviddatascience.shinyapps.io/coronavirus_mental_health/) (may take some time to load)
 
