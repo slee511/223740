@@ -6,8 +6,6 @@ NLP stuff above.
 
 ## What makes people use LPG? (pdf in the respository with the same title)
 
-## Solve problems together during C19. (www.penpaloo.com)
-
 ## One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
 
 Built to replace the one below, which loops over Google Trend 150+ times per load. Apparently Google doesn't allow that. This one should also add some value. 
