@@ -4,7 +4,7 @@ NLP stuff above.
 
 ## Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
 
-## What makes people use LPG? (pdf in the respository with the same title)
+## What makes people use LPG? (in Energy folder)
 
 ## One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
 
