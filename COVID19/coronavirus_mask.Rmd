@@ -1,0 +1,190 @@
+---
+title: "Do Masks Help?"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    runtime: shiny
+---
+Graphs 
+=====================================     
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+library(tidyr)
+library(leaflet)
+library(magrittr)
+library(tidyverse) 
+library(rsconnect) 
+library(shiny)
+
+cases <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")
+
+### Countries with masks
+
+china <- cases[which(cases$Country.Region=="China"), ]
+china <- within(china, rm("Province.State", "Lat", "Long"))
+china <- colSums(china[, 2:length(china)])
+korea <- cases[which(cases$Country.Region=="Korea, South"), ]
+korea <- korea[, 5:length(korea)]
+singapore <- cases[which( cases$Country.Region=="Singapore"), ]
+singapore <- singapore[, 5:length(singapore)]
+
+### Countries advocating against masks
+
+us <- cases[which(cases$Country.Region=="US"), ]
+us <- us[, 5:length(us)]
+italy <- cases[which(cases$Country.Region=="Italy"), ]
+italy <- italy[, 5:length(italy)]
+spain <- cases[which(cases$Country.Region=="Spain"), ]
+spain <- spain[, 5:length(spain)]
+france <- cases[117, ]
+france <- france[, 5:length(france)]
+britain <- cases[224, ]
+britain <- britain[, 5:length(britain)]
+
+cases <- rbind(us, italy, spain, france, britain, china, korea, singapore)
+cases <- t(cases)
+cases <- data.frame(row.names(cases), cases, row.names=NULL)
+names(cases) <- c("Time", "US", "Italy", "Spain", "France", "UK", "China", "South.Korea", "Singapore")
+
+#cases$Countries <- c("US", "Italy", "Spain", "China", "South Korea", "Singapore")
+
+cases$Dates <- as.Date(strptime(cases$Time, 'X%m.%d'))
+
+
+### Deaths
+
+casesd <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
+
+chinad <- casesd[which(casesd$Country.Region=="China"), ]
+chinad <- within(chinad, rm("Province.State", "Lat", "Long"))
+chinad <- colSums(chinad[, 2:length(chinad)])
+koread <- casesd[which(casesd$Country.Region=="Korea, South"), ]
+koread <- koread[, 5:length(koread)]
+singapored <- casesd[which(casesd$Country.Region=="Singapore"), ]
+singapored <- singapored[, 5:length(singapored)]
+
+### Countries advocating against masks
+
+usd <- casesd[which(casesd$Country.Region=="US"), ]
+usd <- usd[, 5:length(usd)]
+italyd <- casesd[which(casesd$Country.Region=="Italy"), ]
+italyd <- italyd[, 5:length(italyd)]
+spaind <- casesd[which(casesd$Country.Region=="Spain"), ]
+spaind <- spaind[, 5:length(spaind)]
+franced <- casesd[117, ]
+franced <- franced[, 5:length(franced)]
+britaind <- casesd[224, ]
+britaind <- britaind[, 5:length(britaind)]
+
+casesd <- rbind(usd, italyd, spaind, franced, britaind, chinad, koread, singapored)
+casesd <- t(casesd)
+casesd <- data.frame(row.names(casesd), casesd, row.names=NULL)
+names(casesd) <- c("Time", "US", "Italy", "Spain", "France", "UK", "China", "South.Korea", "Singapore")
+
+casesd$Dates <- as.Date(strptime(casesd$Time, 'X%m.%d'))
+
+
+```
+
+Col {data-width=500}
+-----------------------------------------------------------------------
+
+### 
+
+```{r}
+
+#m = list( l = 80, r = 300, b = 80, t = 100, pad = 0 )
+
+cg <- ggplot(cases) +
+  geom_path(aes(x=Dates, y=US, group=1, linetype="Limited masks"), color="coral2") +
+  geom_path(aes(x=Dates, y=Italy, group=1, linetype="Limited masks"), color="coral2") +
+  geom_path(aes(x=Dates, y=Spain, group=1, linetype="Limited masks"), color="coral2") +
+  geom_path(aes(x=Dates, y=France, group=1, linetype="Limited masks"), color="coral2") + 
+  geom_path(aes(x=Dates, y=UK, group=1, linetype="Limited masks"), color="coral2") + 
+  geom_path(aes(x=Dates, y=China, group=1, linetype="Many masks"), color="lightcyan4") +
+  geom_path(aes(x=Dates, y=South.Korea, group=1, linetype="Many masks"), color="lightcyan4") +
+  geom_path(aes(x=Dates, y=Singapore, group=1, linetype="Many masks"), color="lightcyan4") + 
+  ggtitle("COVID-19 Cases by Country") +
+  scale_linetype_manual(values=c("#E95555", "#81C77F")) +
+  labs(x="Time", y='COVID-19 Cases by Country')  +
+  theme(plot.title = element_text(color="black", size=12, face="", hjust = 0.5), legend.position=c(.1, .8), legend.text=element_text(size=10, face="Avenir"), axis.title.y=element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)), axis.title.x=element_text(margin=margin(t=11, r=0, b=0, l=0))) 
+  #theme(legend.title=element_blank()) 
+cg <- ggplotly(cg) %>% layout(autosize=T, legend = list(x =0.01, y = .99), xaxis=element_text(margin=margin(t=11, r=0, b=0, l=0)))
+cg
+
+
+
+
+
+```
+
+### 
+
+* Singapore, China, and South Korea have flooded their countries with masks. The US, Italy, France, UK, and Spain have not. The graphs show the difference (updated daily).
+
+* Hover over the lines to see the details.
+
+* Wall Street Journal on how the virus spreads: "Thousands of tiny, often invisible droplets of saliva or mucus disperse in the air. You walk by -- within 6 feet of the offender -- and inadvertently inhale the droplets." (https://www.wsj.com/articles/how-the-coronavirus-attacks-your-body-11585343549)
+
+* George Gao, director-general of the Chinese Center for Disease Control and Prevention, who battled early COVID-19 spread in China: "The big mistake in the U.S. and Europe, in my opinion, is that people aren’t wearing masks. This virus is transmitted by droplets and close contact. Droplets play a very important role—you’ve got to wear a mask..." (https://www.sciencemag.org/news/2020/03/not-wearing-masks-protect-against-coronavirus-big-mistake-top-chinese-scientist-says)
+
+
+Col {data-width=500}
+-----------------------------------------------------------------------
+
+### 
+
+```{r}
+
+cg <- ggplot(casesd) +
+  geom_path(aes(x=Dates, y=US, group=1, linetype="Limited masks"), color="coral2") +
+  geom_path(aes(x=Dates, y=Italy, group=1, linetype="Limited masks"), color="coral2") +
+  geom_path(aes(x=Dates, y=Spain, group=1, linetype="Limited masks"), color="coral2") +
+  geom_path(aes(x=Dates, y=France, group=1, linetype="Limited masks"), color="coral2") + 
+  geom_path(aes(x=Dates, y=UK, group=1, linetype="Limited masks"), color="coral2") + 
+  geom_path(aes(x=Dates, y=China, group=1, linetype="Many masks"), color="lightcyan4") +
+  geom_path(aes(x=Dates, y=South.Korea, group=1, linetype="Many masks"), color="lightcyan4") +
+  geom_path(aes(x=Dates, y=Singapore, group=1, linetype="Many masks"), color="lightcyan4") + 
+  ggtitle("Deaths from COVID-19 by Country") +
+  scale_linetype_manual(name="Deaths", values=c("#E95555", "#81C77F")) +
+  labs(x="Time", y='COVID-19 Deaths by Country')  +
+  theme(plot.title = element_text(color="black", size=12, face="", hjust = 0.5), legend.position=c(.1, .8), legend.text=element_text(size=10, face="Avenir"), axis.title.y=element_text(margin = margin(t = 0, r = 20, b = 0, l = 0)), axis.title.x=element_text(margin=margin(t=11, r=0, b=0, l=0))) 
+  #theme(legend.title=element_text("Hello")) 
+cg <- ggplotly(cg) %>% layout(autosize=T, legend = list(x =0.01, y = .99), xaxis=element_text(margin=margin(t=11, r=0, b=0, l=0)))
+cg
+
+```
+
+### 
+
+* Americans and Europeans have been diligently washing their hands. COVID-19 has still ravaged the countries. 
+
+* In the many-masks countries, people are publicly shamed if they don't wear masks. In the limited-masks countries, if they wear masks (perceived as sick).
+
+* The disparity between the two types in rate of cases and of deaths is undeniable.
+
+* Masks also have indirect impact; wearing them tells others to take the crisis seriously and avoid contact. 
+
+* Masks should be worn not only on the streets but also in buildings, elevators, etc. If people are there, droplets also are. 
+
+* But the shortage is real. I believe homemade masks are the answer. Today (March 31) NYT columnist Farhad Manjoo wrote this about homemade masks: https://www.nytimes.com/2020/03/31/opinion/coronavirus-n95-mask.html. They (and simple scarves) are incredibly effective. Better to donate manufactured masks to healthcare workers, who need them to reassure patients. 
+
+* (Update, March 31) CDC, WH, etc. are revisiting their recommendation of not wearing masks in public (I sent WH and others this website on March 29). 
+
+
+Contact
+=====================================     
+
+**Data sources**
+
+* 2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository by Johns Hopkins CSSE (https://github.com/CSSEGISandData/COVID-19)
+
+The data used here are updated daily. 
+
+**Contact**
+
+For any inquiries, please email David Lee: slee511@jhu.edu
