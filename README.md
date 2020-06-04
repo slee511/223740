@@ -18,7 +18,7 @@
 
 -The app no longer works -- gtrendR package has hit the limit (https://github.com/PMassicotte/gtrendsR/issues/166). 
 
-## Healthen.me (https://www.healthen.me)
+### Healthen.me (https://www.healthen.me)
 
 Objective: Help solve and manage complex health conditions like diabetes, multiple sclerosis, etc. Make it intuitive. 
 
@@ -35,7 +35,7 @@ Solution:
 
 Lines of code: 1586
 
-## Sown.me (https://www.sown.me)
+### Sown.me (https://www.sown.me)
 
 Objective: Make social beneficial and productive. Separate social from looks, vanity, etc. 
 
