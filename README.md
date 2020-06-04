@@ -1,22 +1,20 @@
 NLP stuff above. 
 
-## Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/) (in progress)
+### Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/) (in progress)
+-Time from brainstorm (on what to make, which typically takes long) to finish: 1 day
 
-## Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
+### Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
+-Time: 6 hours
 
-## What makes people use LPG? (in "Energy" folder)
-
-## One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
+### One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
+-Time: 20 minutes
 
 ## Monitor Americans' mental health under lockdown (https://daviddatascience.shinyapps.io/coronavirus_mental_health/) (may take some time to load)
-
-Objective: More U.S. states are entering lockdown. Under lockdown, people can't go outside except for "essential" businesses. Such businesses often include pharmacy, hospital, and grocery that provide sustenance. They exclude dine-in restaurants, parks, and gyms where people usually gather to socialize. The graphs show how often people in each type of states -- locked down or not locked down -- search terms that represent change in their mental health and living environment. The map gives context by showing relative number of total coronavirus cases by state and by the two types. 
-
-How the graphs change over time may reveal another cost of lockdown other than the economic: **the mental cost**. 
-
-Source code above. 
-
-*The app no longer works -- gtrendR package has hit the limit (https://github.com/PMassicotte/gtrendsR/issues/166). 
+-Time: A week (took long to brainstorm on what to make)
+-Objective: More U.S. states are entering lockdown. Under lockdown, people can't go outside except for "essential" businesses. Such businesses often include pharmacy, hospital, and grocery that provide sustenance. They exclude dine-in restaurants, parks, and gyms where people usually gather to socialize. The graphs show how often people in each type of states -- locked down or not locked down -- search terms that represent change in their mental health and living environment. The map gives context by showing relative number of total coronavirus cases by state and by the two types. 
+-How the graphs change over time may reveal another cost of lockdown other than the economic: **the mental cost**. 
+-Source code above. 
+-The app no longer works -- gtrendR package has hit the limit (https://github.com/PMassicotte/gtrendsR/issues/166). 
 
 ## Healthen.me (https://www.healthen.me)
 
