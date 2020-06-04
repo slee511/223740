@@ -7,7 +7,7 @@
 ### One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
 -Time: 20 minutes
 
-## Monitor Americans' mental health under lockdown (https://daviddatascience.shinyapps.io/coronavirus_mental_health/) (may take some time to load)
+### Monitor Americans' mental health under lockdown (https://daviddatascience.shinyapps.io/coronavirus_mental_health/) (may take some time to load)
 -Time: A week (took long to brainstorm on what to make)
 
 -Objective: More U.S. states are entering lockdown. Under lockdown, people can't go outside except for "essential" businesses. Such businesses often include pharmacy, hospital, and grocery that provide sustenance. They exclude dine-in restaurants, parks, and gyms where people usually gather to socialize. The graphs show how often people in each type of states -- locked down or not locked down -- search terms that represent change in their mental health and living environment. The map gives context by showing relative number of total coronavirus cases by state and by the two types. 
