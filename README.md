@@ -1,8 +1,8 @@
-### Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/) (in progress)
--Time from brainstorm to finish: 1 day
-
 ### Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
--Time: 6 hours
+-Time from brainstorm to finish: 6 hours
+
+### Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/) (in progress)
+-Time: 1 day
 
 ### One quick view of coronavirus's spread and cost of lives in the U.S. and the world (https://daviddatascience.shinyapps.io/coronavirus_oneview/#section-graphs)
 -Time: 20 minutes
