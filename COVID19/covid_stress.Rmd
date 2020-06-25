@@ -1,0 +1,244 @@
+---
+title: "How important is stress in a fight against COVID-19?"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+  #  orientation: rows
+    vertical_layout: fill
+    runtime: shiny
+
+---
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+library(tidyr)
+library(dplyr)
+library(leaflet)
+library(magrittr)
+library(tidyverse) 
+library(rsconnect) 
+library(shiny)
+```
+
+### __Causes of Deaths__
+
+```{r}
+
+# graph of causes of death
+
+c <- read.csv("annual-number-of-deaths-by-cause.csv")
+cause <- filter(c, Year == 2017)
+cause <- select(cause, Meningitis..deaths.:Poisonings..deaths.)
+cause[,][is.na(cause[,])] <- 0
+cause <- colSums(cause)
+cause <- stack(cause)
+names(cause) <- c("Deaths", "Disease")
+cause$Disease <- sub("..deaths.","", cause$Disease)
+cause$Disease <- as.factor(cause$Disease)
+cause <- arrange(cause, Deaths)
+
+cause$Disease <- sub("\\.", " ", cause$Disease)
+cause$Disease <- sub("\\.", " ", cause$Disease)
+cause$Disease <- sub("  hot.and.cold.exposure.", "", cause$Disease)
+
+cau <- cause %>% ggplot() +
+  geom_col(aes(x=round(Deaths, 0), y=Disease), fill=c("grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey","indianred2", "grey", "grey", "grey", "grey", "indianred2","grey", "grey", "indianred2")) +
+  ggtitle("Worldwide Causes of Deaths, 2017") +
+  xlab("Deaths") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+ggplotly(cau) %>% layout(margin = list(l = 0, r = 0, b = 0, t = 40),
+           yaxis = list(title = paste0(c(rep("&nbsp;", 0),
+                                         "Disease",
+                                         rep("&nbsp;", 0),
+                                         rep("\n&nbsp;", 3)),
+                                       collapse = "")))
+  
+
+
+```
+
+-------------------------------------
+
+* Three of the world's top causes of deaths are **cardiovascular disease, dementia, and diabetes**.  
+
+* Their top risk factors are **high blood pressure, low physical activity, smoking, high blood sugar, obesity, diet high in sodium**. 
+
+* These risk factors share one primary cause: **stress**. 
+
+* (Some, like high cholesterol, are 0, only because there's no data available.)
+
+
+### __Risk Factors__
+
+```{r}
+# graph of risks of death
+
+r <- read.csv("number-of-deaths-by-risk-factor.csv")
+risk <- filter(r, Year == 2017)
+risk <- select(risk, Unsafe.water.source..deaths.:Diet.low.in.seafood.omega.3.fatty.acids..deaths.)
+risk[,][is.na(risk[,])] <- 0
+risk <- colSums(risk)
+risk <- stack(risk)
+names(risk) <- c("Deaths", "Factors")
+risk$Factors <- sub("..deaths.","", risk$Factors)
+risk <- arrange(risk, Deaths)
+risk$Factors <- sub("\\.", " ", risk$Factors)
+risk$Factors <- sub("\\.", " ", risk$Factors)
+risk$Factors <- sub("\\.", " ", risk$Factors)
+risk$Factors <- sub("\\.", " ", risk$Factors)
+risk$Factors <- sub("\\.", " ", risk$Factors)
+risk$Factors <- sub("\\.", " ", risk$Factors)
+risk$Factors <- sub("\\.", " ", risk$Factors)
+risk$Factors <- sub("  ", " ", risk$Factors)
+risk$Factors <- sub("   ", " ", risk$Factors)
+
+
+ris <- risk %>% ggplot() +
+  geom_col(aes(x=round(Deaths, 0), y=Factors), fill=c("grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "indianred2", "grey", "grey", "grey","grey", "grey", "grey", "grey", "grey", "indianred2","indianred2", "grey", "indianred2", "indianred2", "indianred2")) +
+  ggtitle("Worldwide Deaths by Risk Factor, 2017") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Deaths") 
+
+risgg <- ggplotly(ris) 
+risgg %>%   layout(margin = list(l = 0, r = 0, b = 0, t = 40),
+           yaxis = list(title = paste0(c(rep("&nbsp;", 0),
+                                         "Risk Factors",
+                                         rep("&nbsp;", 0),
+                                         rep("\n&nbsp;", 3)),
+                                       collapse = "")))
+
+
+```
+
+-------------------------------------
+
+* Three of the world's top causes of deaths are **cardiovascular disease, dementia, and diabetes**.  
+
+* Their top risk factors are **high blood pressure, low physical activity, smoking, high blood sugar, obesity, diet high in sodium**. 
+
+* These risk factors share one primary cause: **stress**. 
+
+* (Some, like high cholesterol, are 0, only because there's no data available.)
+
+
+### __The Elderly__
+
+```{r}
+# graph of the elderly portion of the deaths
+
+card <- read.csv("cardiovascular-disease-deaths-by-age.csv")
+card <- filter(card, Year == 2017)
+card <- select(card, Under.5s..deaths.:X15.49.years.old..deaths.)
+card[,][is.na(card[,])] <- 0
+card <- colSums(card)
+card <- stack(card)
+names(card) <- c("Deaths", "Age")
+card$Age <- sub("..deaths.","", card$Age)
+card <- arrange(card, Deaths)
+card$Age <- sub("X","", card$Age)
+
+card$Age <- sub("\\.", " ", card$Age)
+card$Age <- sub("\\.", " ", card$Age)
+card$Age <- sub("\\.", " ", card$Age)
+card$Age <- sub("  ", "+", card$Age)
+card$Age <- sub(" ", "-", card$Age)
+card$Age <- sub(" ", "-", card$Age)
+card$Age <- sub(" ", "-", card$Age)
+card$Age <- sub("5s", "5", card$Age)
+
+cardiov <- card %>% ggplot() +
+  geom_col(aes(x=round(Deaths, 0), y=Age), fill=c("grey", "grey", "grey", "grey", "indianred2"), width=.5) +
+  ggtitle("Cardiovascular Deaths by Age, 2017") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Deaths") 
+
+ggplotly(cardiov) %>% layout(margin = list(l = 0, r = 0, b = 0, t = 40),
+           yaxis = list(title = paste0(c(rep("&nbsp;", 0),
+                                         "Age",
+                                         rep("&nbsp;", 0),
+                                         rep("\n&nbsp;", 3)),
+                                       collapse = "")))
+
+```
+
+-------------------------------------
+
+* No one is more vulnerable to the dangers of stress than those already most vulnerable to COVID-19: **the elderly**. 
+
+* Far more of the elderly die, for example, from cardiovascular disease than does any other age group (graph on the left).  
+
+* They have been told COVID-19 won't end for years -- many of them are in their 80s and 90s. Most have been strictly isolated, with no friendly faces checking in. 
+
+
+
+### __Additional Deaths from Stress__
+
+```{r}
+# graph of new predicted deaths from those causes in addition to covid-19 deaths
+
+deaths <- cause$Deaths[cause$Disease=="Cardiovascular diseases"] + cause$Deaths[cause$Disease == "Diabetes"] + cause$Deaths[cause$Disease == "Dementia"]
+Stress <- deaths * .1
+
+Covid19 <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
+Covid19 <- Covid19[, length(Covid19)]
+Covid19 <- sum(Covid19)
+
+col <- data.frame(Covid19, Stress)
+col <- stack(col)
+names(col) <- c("Deaths", "Cause")
+
+comp <- col %>% ggplot() +
+  geom_col(aes(x=Deaths, y=Cause), fill=c("indianred2", "indianred2"), width = .3) +
+  ggtitle("Estimated deaths from stress & Confirmed deaths from COVID-19 (Updated daily)") + 
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+ggplotly(comp) %>% layout(margin = list(l = 0, r = 0, b = 0, t = 40),
+           yaxis = list(title = paste0(c(rep("&nbsp;", 0),
+                                         "Cause",
+                                         rep("&nbsp;", 0),
+                                         rep("\n&nbsp;", 3)),
+                                       collapse = "")))
+
+```
+
+-------------------------------------
+
+* Say the stress causes the deaths from cardiovascular disease, dementia, and diabetes to increase by only 10%. That's **10,316,749 lives** lost in addition to those lost from COVID-19 (hover over the bar to see today's number). 
+
+* The real count is likely to be even higher, as the stress affects many who would otherwise not have developed the risk factors. 
+
+
+### __Recommendations__
+
+* To counter stress among the elderly, public health communications should emphasize possibility of speedy vaccine development. Waiting three more months after three months is more manageable than waiting six months from the get-go. 
+
+* Governments worldwide should show internal unity. Seeing our troops fight amongst themselves in the middle of a battle would be highly disconcerting for anyone. This would likely be more so for the elderly, who are stuck at home and often indulge in news. 
+
+* Governments should encourage families and volunteers to visit the elderly, protected by glass walls and masks. 
+
+* Even the elderly living with family members can undergo severe stress, depending on the family members. Public officials should educate the public on the latest research on how to be pleasant to be around. While telling others how to act may be off-putting, this is an extraordinary time. For example, people who put our needs ahead of theirs are often the people who energize rather than deflate us. 
+
+### __References__
+
+* https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2633295/
+
+* https://pubmed.ncbi.nlm.nih.gov/22698415/
+
+* https://www.mayoclinic.org/diseases-conditions/stroke/symptoms-causes/syc-20350113
+
+* https://www.mayoclinic.org/diseases-conditions/heart-disease/symptoms-causes/syc-20353118
+
+* https://www.mayoclinic.org/diseases-conditions/diabetes/symptoms-causes/syc-20371444
+
+* For inquiries, please contact David Lee: slee511@jhu.edu. Recommendations on what to recommend welcome. 
+
+
+
+
+
+
+
