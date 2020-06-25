@@ -1,5 +1,5 @@
 ### How important is stress in fighting against COVID-19? (https://rpubs.com/david223740/632338)
--Time from brainstorm to finish: A few hours
+-Time from brainstorm to finish: A few hours (needs polishing)
 
 ### Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
 -Time: 6 hours
