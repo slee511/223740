@@ -1,5 +1,8 @@
+### How important is stress in fighting against COVID-19? (https://rpubs.com/david223740/632338)
+-Time from brainstorm to finish: A few hours
+
 ### Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
--Time from brainstorm to finish: 6 hours
+-Time: 6 hours
 
 ### Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/) (in progress)
 -Time: 1 day
