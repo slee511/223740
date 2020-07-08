@@ -1,8 +1,15 @@
-### How important is stress in fighting against COVID-19? (https://rpubs.com/david223740/632338)
--Time from brainstorm to finish: A few hours (needs polishing)
+### Does confidence matter to COVID-19? (https://rpubs.com/david223740/confidence_covid)
+
+### Compare your neighborhood based on: health expense, blood pressure, body mass index, and heart rate (Massachusetts only) (https://rpubs.com/david223740/636523)
+-(I was fishing for something else)
+
+### Does having allergy make us more sensitive health-wise? (https://rpubs.com/david223740/636041)
 
 ### Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
 -Time: 6 hours
+
+### How important is stress in fighting against COVID-19? (https://rpubs.com/david223740/632338)
+-Time from brainstorm to finish: A few hours (needs polishing)
 
 ### Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/) (in progress)
 -Time: 1 day
