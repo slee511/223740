@@ -1,7 +1,6 @@
 ### Does confidence matter to COVID-19? (https://rpubs.com/david223740/confidence_covid)
 
 ### Compare your neighborhood based on: health expense, blood pressure, body mass index, and heart rate (Massachusetts only) (https://rpubs.com/david223740/636523)
--(I was fishing for something else)
 
 ### Does having allergy make us more sensitive health-wise? (https://rpubs.com/david223740/636041)
 
