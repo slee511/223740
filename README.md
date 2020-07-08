@@ -1,4 +1,4 @@
-### Does confidence matter to COVID-19? (https://rpubs.com/david223740/confidence_covid)
+### Does confidence in our looks/health matter to COVID-19? (https://rpubs.com/david223740/confidence_covid)
 
 ### Compare your neighborhood based on: health expense, blood pressure, body mass index, and heart rate (Massachusetts only) (https://rpubs.com/david223740/636523)
 
