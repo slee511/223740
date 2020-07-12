@@ -1,4 +1,4 @@
-### Which decision maker uses LPG more often in India? (https://rpubs.com/david223740/637420) (done some time ago)
+### Which decision maker uses LPG more often in India? (https://rpubs.com/david223740/637420)
 
 ### Compare your neighborhood based on: health expense, blood pressure, body mass index, and heart rate (Massachusetts only) (https://rpubs.com/david223740/636523)
 
