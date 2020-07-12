@@ -1,13 +1,13 @@
-### Which decision maker uses LPG more often in India? (https://rpubs.com/david223740/637420)
-
-### Does confidence in our looks/health matter to COVID-19? (https://rpubs.com/david223740/confidence_covid)
-
 ### Compare your neighborhood based on: health expense, blood pressure, body mass index, and heart rate (Massachusetts only) (https://rpubs.com/david223740/636523)
 
 ### Does having allergy make us more sensitive health-wise? (https://rpubs.com/david223740/636041)
 
 ### Do masks help control COVID-19? (https://daviddatascience.shinyapps.io/coronavirus_mask/#section-graphs)
 -Time: 6 hours
+
+### Which decision maker uses LPG more often in India? (https://rpubs.com/david223740/637420)
+
+### Does confidence in our looks/health matter to COVID-19? (https://rpubs.com/david223740/confidence_covid)
 
 ### How important is stress in fighting against COVID-19? (https://rpubs.com/david223740/632338)
 -Time from brainstorm to finish: A few hours (needs polishing)
