@@ -7,11 +7,6 @@
 
 ### Which decision maker uses LPG more often in India? (https://rpubs.com/david223740/637420)
 
-### Does confidence in our looks/health matter to COVID-19? (https://rpubs.com/david223740/confidence_covid)
-
-### How important is stress in fighting against COVID-19? (https://rpubs.com/david223740/632338)
--Time from brainstorm to finish: A few hours (needs polishing)
-
 ### Everyone's a leader. But which type? (https://daviddatascience.shinyapps.io/covid_leader/) (in progress)
 -Time: 1 day
 
